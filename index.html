@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parametric 3D Room Generator</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div id="app">
+    <aside class="panel">
+      <h1>Parametric Room Generator</h1>
+      <p class="hint">Choose a layout, enter wall lengths in centimeters, then generate a centered 3D room with fixed wall thickness.</p>
+
+      <div class="section">
+        <label for="layoutSelect">Layout</label>
+        <select id="layoutSelect">
+          <option value="rectangle">Rectangle (4 walls)</option>
+          <option value="l-shape">L-shape (6 walls)</option>
+          <option value="u-shape">U-shape (8 walls)</option>
+        </select>
+      </div>
+
+      <div class="section">
+        <label for="ceilingHeight">Ceiling Height (cm)</label>
+        <input id="ceilingHeight" type="number" min="100" step="10" value="280">
+      </div>
+
+      <div class="section">
+        <div class="section-head">
+          <h2>Wall Lengths</h2>
+          <span id="layoutBadge" class="badge">4 walls</span>
+        </div>
+        <div id="wallInputs" class="wall-inputs"></div>
+        <p id="layoutHelp" class="help"></p>
+      </div>
+
+      <div class="section">
+        <button id="generateRoomBtn" type="button">Generate Room</button>
+      </div>
+
+      <div class="section">
+        <h2>Room Stats</h2>
+        <div id="stats" class="stats"></div>
+      </div>
+
+      <div class="section">
+        <h2>Notes</h2>
+        <ul>
+          <li>Wall thickness is fixed at 10 cm.</li>
+          <li>Rooms are generated as orthogonal floor plans.</li>
+          <li>No doors or windows are included yet.</li>
+        </ul>
+      </div>
+    </aside>
+
+    <main class="viewport">
+      <div id="status">Ready to generate a room</div>
+      <canvas id="sceneCanvas"></canvas>
+    </main>
+  </div>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.161.0/build/three.module.js"
+      }
+    }
+  </script>
+  <script type="module" src="./src/app.js"></script>
+</body>
+</html>
